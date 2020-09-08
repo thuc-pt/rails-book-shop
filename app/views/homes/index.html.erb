@@ -1,0 +1,165 @@
+<div class="container">
+  <%if notice %>
+    <div class="text-center alert alert-success">
+      <%=notice %>
+    </div>
+  <%end %>
+
+  <div class="row">
+    <%=render 'categories' %>
+    <div class="col-xl-9">
+      <ul class="nav">
+        <li class="nav-items"><a href="" class="nav-link">Văn Học</a></li>
+        <li class="nav-items"><a href="" class="nav-link">Daily Deals</a></li>
+      </ul>
+      <div id="go-slide" class="carousel slide" data-rider="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= link_to(image_tag(@slide_active.url_img.url, class: 'img-fluid'), @slide_active.link_slide.name) %>
+          </div>
+          <%@slides.each do |slide| %>
+            <div class="carousel-item">
+              <%= link_to(image_tag(slide.url_img.url, class: 'img-fluid'), slide.link_slide.name) %>
+            </div>
+          <% end %>
+          <a class="carousel-control-prev" href="#go-slide" data-slide="prev"><span class="carousel-control-prev-icon"></span></a>
+          <a class="carousel-control-next" href="#go-slide" data-slide="next"><span class="carousel-control-next-icon"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="owl-slider wow fadeInRight" data-wow-delay="0.5s">
+    <div class="top-slider">
+      <h5>SÁCH NỔI BẬT</h5>
+    </div>
+    <div class="bottom-slider">
+      <div class="owl-carousel owl-theme">
+        <% @book_highlight.each do |snb|%>
+          <div class="item">
+            <a href="<%=bookstore_path(snb)%>" class="detail">
+              <%= image_tag(snb.book.url_img.url) %>
+              <%= snb.book.title %><br>
+            </a>
+            <%= snb.book.price %>VND
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="owl-slider wow fadeInLeft" data-wow-delay="0.3s">
+    <div class="top-slider">
+      <h5>SÁCH TIẾNG VIỆT</h5>
+    </div>
+    <div class="bottom-slider">
+      <div class="owl-carousel owl-theme">
+        <% @book_vietnamese.each do |stv| %>
+          <div class="item">
+            <a href="<%= bookstore_path(stv) %>" class="detail">
+              <%= image_tag(stv.book.url_img.url) %>
+              <%= stv.book.title %><br>
+            </a>
+            <%= stv.book.price %>VND
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="owl-slider wow shake" data-wow-delay="1s">
+    <div class="top-slider">
+      <h5>FOREIGN LANGUAGE BOOK</h5>
+    </div>
+    <div class="bottom-slider">
+      <div class="owl-carousel owl-theme">
+        <% @book_foreign.each do |snn| %>
+          <div class="item">
+            <a href="<%= bookstore_path(snn) %>" class="detail">
+              <%= image_tag(snn.book.url_img.url)%>
+              <%= snn.book.title %><br>
+            </a>
+            <%= snn.book.price %>VND
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="owl-slider wow shake" data-wow-delay="1s">
+    <div class="top-slider">
+      <h5>TÂM LÝ - KỸ NĂNG</h5>
+    </div>
+    <div class="bottom-slider">
+      <div class="owl-carousel owl-theme">
+        <% @book_psychological.each do |stl| %>
+          <div class="item">
+            <a href="<%= bookstore_path(stl) %>" class="detail">
+              <%= image_tag(stl.book.url_img.url) %>
+              <%= stl.book.title %><br>
+            </a>
+            <%= stl.book.price %>VND
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="owl-slider wow shake" data-wow-delay="1s">
+    <div class="top-slider">
+      <h5>KINH TẾ</h5>
+    </div>
+    <div class="bottom-slider">
+      <div class="owl-carousel owl-theme">
+        <% @book_economic.each do |skt| %>
+          <div class="item">
+            <a href="<%=bookstore_path(skt) %>" class="detail">
+              <%= image_tag(skt.book.url_img.url) %>
+              <%= skt.book.title %><br>
+            </a>
+            <%= skt.book.price %>VND
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="owl-slider wow shake" data-wow-delay="1s">
+    <div class="top-slider">
+      <h5>NUÔI DẠY CON</h5>
+    </div>
+    <div class="bottom-slider">
+      <div class="owl-carousel owl-theme">
+        <% @book_son.each do |ndc| %>
+          <div class="item">
+            <a href="<%=bookstore_path(ndc) %>" class="detail">
+              <%= image_tag(ndc.book.url_img.url) %>
+              <%= ndc.book.title %><br>
+            </a>
+            <%= ndc.book.price %>VND
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $('.owl-carousel').owlCarousel({
+        loop:false,
+        margin:10,
+        responsive:{
+            0:{
+                items:1
+            },
+            400:{
+                items:3
+            },
+            800: {
+                items: 4
+            },
+            1000:{
+                items:6
+            }
+        }
+    })
+</script>

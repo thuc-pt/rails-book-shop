@@ -1,0 +1,75 @@
+<div class="container">
+  <p class="text-center text-success"><%= notice %></p>
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-xl-3">
+        <p>
+          <%= image_tag(@book.url_img.url, class: 'img-fluid') %>
+        </p>
+      </div>
+      <div class="col-xl-9">
+        <h1><%= @book.title %></h1>
+
+        <h4><%= @book.author %></h4>
+
+        <h4><%= @book.price %>VND</h4>
+        <hr>
+        <p style="line-height: 35px"><%= truncate(@book.detail, length: 630) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jumbotron">
+    <p>Thông tin chi tiết</p>
+    <table class="table">
+      <tr>
+        <th>Mã sản phẩm</th>
+        <td><%= @book.sku %></td>
+      </tr>
+      <tr>
+        <th>Thể loại</th>
+        <td><%= @book.category.name %></td>
+      </tr>
+      <tr>
+        <th>Nhà cung cấp</th>
+        <td><%= @book.supplier.name %></td>
+      </tr>
+      <tr>
+        <th>Nhà xuất bản</th>
+        <td><%= @book.company.name %></td>
+      </tr>
+      <tr>
+        <th>Ngày xuất bản</th>
+        <td><%= @book.publishing_date %></td>
+      </tr>
+      <tr>
+        <th>Trọng lượng</th>
+        <td><%= @book.weight %></td>
+      </tr>
+      <tr>
+        <th>Kích thước</th>
+        <td><%= @book.size %></td>
+      </tr>
+      <tr>
+        <th>Số trang</th>
+        <td><%= @book.number_page %></td>
+      </tr>
+      <tr>
+        <th>Hình thức</th>
+        <td><%= @book.formality.name %></td>
+      </tr>
+      <tr>
+        <th>Ngôn ngữ</th>
+        <td><%= @book.language.name %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-xl-6">
+      <%= link_to 'Sửa', edit_book_path(@book), class: 'btn btn-warning btn-lg btn-block' %>
+    </div>
+    <div class="col-xl-6">
+      <%= link_to 'Quay lại', books_path, class: 'btn btn-secondary btn-lg btn-block' %>
+    </div>
+  </div>
+</div>

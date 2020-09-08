@@ -1,0 +1,21 @@
+<%= form_with(model: link_slide, local: true) do |form| %>
+  <% if link_slide.errors.any? %>
+    <div id="alert alert-danger text-center">
+      <% link_slide.errors.full_messages.each do |message| %><%= message %><% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, 'Tên đường dẫn' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-6">
+      <%= form.submit class: 'btn btn-success btn-block' %>
+    </div>
+    <div class="col-xl-6">
+      <%= link_to 'Back', link_slides_path, class: 'btn btn-secondary btn-block' %>
+    </div>
+  </div>
+<% end %>

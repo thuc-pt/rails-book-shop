@@ -1,0 +1,20 @@
+<%= form_with(model: category, local: true) do |form| %>
+  <% if category.errors.any? %>
+    <div id="alert alert-danger">
+      <% category.errors.full_messages.each do |message| %><%= message %><% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, 'Tên Thể Loại' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="row">
+    <div class="col-xl-6">
+      <%= form.submit 'Save', class: 'btn btn-success btn-block' %>
+    </div>
+    <div class="col-xl-6">
+      <%= link_to 'Back', categories_path, class: 'btn btn-secondary btn-block' %>
+    </div>
+  </div>
+<% end %>

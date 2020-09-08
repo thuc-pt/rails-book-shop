@@ -1,0 +1,32 @@
+<%= form_with(model: bookstore, local: true) do |form| %>
+  <% if bookstore.errors.any? %>
+    <div class="alert alert-danger">
+      <% book.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= collection_select(:bookstore, :book_id, @books, :id, :title, {prompt: 'Chọn sách cần thêm vào kho'}, {class: 'form-control'}) %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :sale %>
+    <%= form.number_field :sale, class: 'form-control' %>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-6">
+      <%= form.submit 'Save', class: 'btn btn-success btn-lg btn-block' %>
+    </div>
+    <div class="col-xl-6">
+      <%= link_to 'Back', bookstores_path, class: 'btn btn-secondary btn-lg btn-block' %>
+    </div>
+  </div>
+<% end %>

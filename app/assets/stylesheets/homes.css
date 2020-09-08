@@ -1,0 +1,59 @@
+.categories .nav-link {
+    padding-top: 9px;
+    padding-bottom: 9px;
+    color: #666666;
+}
+
+.col-xl-9 .nav-link {
+    padding: 15px;
+    color: #666666;
+    font-weight: 500;
+}
+
+.col-xl-9 .nav-link:hover {
+    color: orange;
+}
+
+.categories .nav-link:hover {
+    background-color: orange;
+    color: white;
+}
+
+.col-xl-3 .span {
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    background-color: #666666;
+}
+
+.categories {
+    background-color: white;
+}
+
+.owl-slider {
+    padding: 15px;
+    background: white;
+}
+
+.top-slider {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #869791;
+}
+
+.bottom-slider {
+    margin-top: 15px;
+}
+
+.detail {
+    text-decoration: none !important;
+    color: black;
+    font-size: 15px;
+}
+
+.detail:hover {
+    color: orange;
+}
+
+.fa-star {
+    color: orange;
+}

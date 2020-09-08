@@ -1,0 +1,24 @@
+<div class="container">
+  <p class="text-center text-success"><%= notice %></p>
+  <div class="row">
+    <%=render 'admin/list' %>
+    <div class="col-xl-9">
+      <div class="jumbotron">
+        <h1>Tài khoản</h1>
+        <br>
+        <table class="table">
+          <tbody>
+          <% @accounts.each do |account| %>
+            <tr>
+              <td><%= account.username %></td>
+              <td><%= link_to 'Show', account, class: 'btn btn-info' %></td>
+              <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <p><%=will_paginate @accounts, class: 'justify-content-center' %></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+  <p class="text-center text-success"><%= notice %></p>
+  <div class="row">
+    <%=render 'admin/list' %>
+    <div class="col-xl-9">
+      <div class="jumbotron">
+        <h1>Bìa sách</h1>
+        <br>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th colspan="3"></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @formalities.each do |formality| %>
+            <tr>
+              <td><%= formality.name %></td>
+              <td><%= link_to 'Edit', edit_formality_path(formality), class: 'btn btn-warning' %></td>
+              <td><%= link_to 'Destroy', formality, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <br>
+        <%= link_to 'New Formality', new_formality_path, class: 'btn btn-success' %>
+        <p><%=will_paginate @categories, class: 'justify-content-center' %></p>
+      </div>
+    </div>
+  </div>
+</div>

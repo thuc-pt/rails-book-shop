@@ -1,0 +1,146 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-xl-3">
+        <%=image_tag(@bookstore.book.url_img.url, class: 'img-fluid')%>
+      </div>
+      <div class="col-xl-9">
+        <h1><%=@bookstore.book.title %></h1>
+        <h5><%=@bookstore.book.author %></h5>
+        <h5><%=@bookstore.book.price %>VND</h5>
+        <%=button_to 'CHỌN MUA', items_path(:bookstore_id => @bookstore), class: 'btn btn-success btn-lg' %>
+        <hr>
+        <p style="line-height: 30px"><%=truncate(@bookstore.book.detail, length: 600) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="jumbotron">
+    <h5>Chi tiết</h5>
+    <hr>
+    <p style="line-height: 40px"><%=@bookstore.book.detail%></p>
+  </div>
+
+  <div class="jumbotron">
+    <h4>Thông tin chi tiết</h4><br>
+    <table class="table">
+      <tr>
+        <th>Mã sản phẩm</th>
+        <td><%= @bookstore.book.sku %></td>
+      </tr>
+      <tr>
+        <th>Thể loại</th>
+        <td><%= @bookstore.book.category.name %></td>
+      </tr>
+      <tr>
+        <th>Nhà cung cấp</th>
+        <td><%= @bookstore.book.supplier.name %></td>
+      </tr>
+      <tr>
+        <th>Nhà xuất bản</th>
+        <td><%= @bookstore.book.company.name %></td>
+      </tr>
+      <tr>
+        <th>Ngày xuất bản</th>
+        <td><%= @bookstore.book.publishing_date %></td>
+      </tr>
+      <tr>
+        <th>Trọng lượng</th>
+        <td><%= @bookstore.book.weight %></td>
+      </tr>
+      <tr>
+        <th>Kích thước</th>
+        <td><%= @bookstore.book.size %></td>
+      </tr>
+      <tr>
+        <th>Số trang</th>
+        <td><%= @bookstore.book.number_page %></td>
+      </tr>
+      <tr>
+        <th>Hình thức</th>
+        <td><%= @bookstore.book.formality.name %></td>
+      </tr>
+      <tr>
+        <th>Ngôn ngữ</th>
+        <td><%= @bookstore.book.language.name %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="jumbotron">
+    <h2 class="text-danger">Khách hàng nhận xét</h2>
+    <hr>
+    <%@comment.each do |cmt| %>
+      <h5><%=cmt.title %>&nbsp;&nbsp;&nbsp;
+        <%if cmt.start==1%>
+          <span class="fa fa-star"></span>
+        <%end %>
+        <%if cmt.start==2%>
+          <span class="fa fa-star"></span><span class="fa fa-star"></span>
+        <%end %>
+        <%if cmt.start==3 %>
+          <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+        <%end %>
+        <%if cmt.start==4 %>
+          <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+        <%end %>
+        <%if cmt.start==5 %>
+          <span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+        <%end %>
+      </h5>
+      <p>Nhận xét bởi <strong class="text-primary"><%=cmt.account.user.fullname %></strong> vào ngày <%=cmt.created_at.strftime("%d-%m-%Y") %></p>
+      <p><%=cmt.content %></p>
+      <hr>
+    <% end %>
+  </div>
+
+  <%if session[:account_id].nil? %>
+    <div class="jumbotron">
+      <p><a href="<%=login_path %>">Đăng nhập</a> để nhận xét sản phẩm</p>
+      <p>Chưa có tài khoản vui lòng <a href="<%=new_account_path %>">Đăng ký</a></p>
+    </div>
+  <%else%>
+    <div class="jumbotron">
+      <%= form_with(model: @feedback, url: feedbacks_path, local: true) do |form| %>
+        <%= form.hidden_field :account_id, value: session[:account_id] %>
+        <%= form.hidden_field :bookstore_id, value: session[:bookstore_id] %>
+
+        <div class="form-group">
+          <%= form.radio_button :start, 1 %>
+          <%= form.label '1 sao' %>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= form.radio_button :start, 2 %>
+          <%= form.label '2 sao' %>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= form.radio_button :start, 3 %>
+          <%= form.label '3 sao' %>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= form.radio_button :start, 4 %>
+          <%= form.label '4 sao' %>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= form.radio_button :start, 5 %>
+          <%= form.label '5 sao' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :title, 'Chủ đề' %>
+          <%= form.text_field :title, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.text_area :content, rows: 10, class: 'form-control', placeholder: 'Nội dung nhận xét' %>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-3">
+            <%= form.submit 'Gửi nhận xét', class: 'btn btn-warning btn-lg btn-block'%>
+          </div>
+          <div class="col-xl-4">
+            <%=link_to 'Xem tất cả nhật xét của bạn', feedbacks_path, class: 'btn btn-info btn-lg btn-block' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <%end%>
+</div>

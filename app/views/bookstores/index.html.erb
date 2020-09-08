@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <p class="text-center text-success"><%= notice %></p>
+  <div class="row">
+    <%=render 'admin/list' %>
+    <div class="col-xl-9">
+      <div class="jumbotron">
+        <h1>Kho sách</h1>
+        <br>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Sold</th>
+            <th>Remain</th>
+            <th colspan="3"></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @bookstores.each do |bookstore| %>
+            <tr>
+              <td><%= bookstore.book.title %></td>
+              <td><%= bookstore.quantity %></td>
+              <td><%= bookstore.sold %></td>
+              <td><%= bookstore.remain %></td>
+              <td><%= link_to 'Sửa', edit_bookstore_path(bookstore), class: 'btn btn-warning' %></td>
+              <td><%= link_to 'Xóa', bookstore, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <br>
+        <%= link_to 'Nhập kho', new_bookstore_path, class: 'btn btn-success' %>
+        <p><%=will_paginate @bookstore, class: 'justify-content-center' %></p>
+      </div>
+    </div>
+  </div>
+</div>

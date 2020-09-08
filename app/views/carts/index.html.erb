@@ -1,0 +1,26 @@
+<div class="container">
+  <p class="text-center text-success"><%= notice %></p>
+  <div class="jumbotron">
+    <h1>Carts</h1>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID Cart</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @carts.each do |cart| %>
+        <tr>
+          <td><%=cart.id %></td>
+          <td><%= link_to 'Show', cart, class: 'btn btn-info' %></td>
+          <td><%= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+    <p><%=will_paginate @carts, class: 'justify-content-center' %></p>
+  </div>
+</div>

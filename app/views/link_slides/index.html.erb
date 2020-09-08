@@ -1,0 +1,30 @@
+<div class="container">
+  <p class="text-center text-success"><%= notice %></p>
+  <div class="jumbotron">
+
+    <h1>Link Slides</h1>
+    <br>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @link_slides.each do |link_slide| %>
+        <tr>
+          <td><%= link_slide.name %></td>
+          <td><%= link_to 'Edit', edit_link_slide_path(link_slide), class: 'btn btn-warning' %></td>
+          <td><%= link_to 'Destroy', link_slide, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Link Slide', new_link_slide_path, class: 'btn btn-success' %>
+  </div>
+</div>

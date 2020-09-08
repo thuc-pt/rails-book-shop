@@ -1,0 +1,36 @@
+<header class="fixed-top">
+  <div class="container">
+    <div class="header-1">
+      <%if session[:account_id].nil?%>
+        <ul class="nav justify-content-center">
+          <li class="nav-items"><a href="" class="nav-link"><%= image_tag('VN.png') %></a></li>
+          <li class="nav-items"><a href="" class="nav-link"><%= image_tag('english.png') %></a></li>
+          <li class="nav-items"><a href="" class="nav-link"><%= image_tag('japan.png') %></a></li>
+          <li class="nav-items"><a href="<%=new_account_path %>" class="nav-link">Đăng ký</a></li>
+          <li class="nav-items"><a href="<%=login_path %>" class="nav-link">Đăng nhập</a></li>
+          <li class="nav-items"><a href="<%= cart_path(@cart) %>" class="nav-link">Giỏ hàng</a></li>
+        </ul>
+      <%else %>
+        <ul class="nav justify-content-center">
+          <li class="nav-items"><a href="<%=new_account_path %>" class="nav-link">Đăng ký</a></li>
+          <li class="nav-items"><a href="<%=cart_path(@cart) %>" class="nav-link">Giỏ hàng</a></li>
+          <li class="nav-items"><a href="<%if session[:account_role]==true%>
+                                              <%=admin_path%>
+                                             <%else%>
+                                              <%=customer_path%>
+                                             <%end%>" class="link-avt"><%=image_tag('hinh-mat-cuoi.png', class: 'avatar')%> <%=session[:account_name]%></a></li>
+          <li class="nav-items"><%=link_to 'Đăng xuất', '/logout', method: :delete, class: 'nav-link' %></li>
+        </ul>
+      <%end%>
+
+    </div>
+    <div class="header-2">
+      <div class="row">
+        <div class="col-xl-3">
+          <a href="<%= root_path %>"><%= image_tag('logo.png', class: 'img-fluid wow fadeInDown') %></a>
+        </div>
+        <%=render 'search/form' %>
+      </div>
+    </div>
+  </div>
+</header>

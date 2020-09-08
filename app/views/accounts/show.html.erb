@@ -1,0 +1,25 @@
+<div class="container">
+  <p class="text-center text-success"><%= notice %></p>
+  <div class="jumbotron">
+    <p>
+      <strong>Username: </strong>
+      <%= @account.username %>
+    </p>
+
+    <p>
+      <strong>Password: </strong>
+      <%= @account.hash_password %>
+    </p>
+
+    <p>
+      <strong>Salt: </strong>
+      <%= @account.salt %>
+    </p>
+
+    <p>
+      <strong>Admin: </strong>
+      <%= @account.admin %>
+    </p>
+    <%=link_to 'Back', accounts_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

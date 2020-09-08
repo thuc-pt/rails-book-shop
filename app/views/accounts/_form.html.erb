@@ -1,0 +1,25 @@
+<%= form_with(model: account, local: true) do |form| %>
+  <% if account.errors.any? %>
+    <div class="text-center alert alert-danger">
+        <% account.errors.full_messages.each do |message| %><%= message %><% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :username, 'Tên đăng nhập' %>
+    <%= form.text_field :username, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :password, 'Mật khẩu' %>
+    <%= form.password_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :passwordConfirmation, 'Nhập lại mật khẩu' %>
+    <%= form.password_field :passwordConfirmation, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Xác nhận', class: 'btn btn-lg btn-success btn-block' %>
+  </div>
+<% end %>

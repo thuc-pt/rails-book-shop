@@ -1,0 +1,53 @@
+<div class="container">
+  <p class="text-center text-success"><%=notice %></p>
+  <div class="row">
+    <%=render 'list' %>
+    <div class="col-xl-9">
+      <div class="jumbotron">
+        <h1>Hello Admin</h1>
+        <br>
+        <%if @user.empty? %>
+          <%link_to 'Cập Nhật Thông Tin Cá Nhân', new_user_path, class: 'btn btn-success' %>
+        <%else %>
+          <%@user.each do |user| %>
+            <p>
+              <strong>Họ tên: </strong>
+              <%= user.fullname %>
+            </p>
+
+            <p>
+              <strong>Số điện thoại: </strong>
+              <%= user.phone %>
+            </p>
+
+            <p>
+              <strong>Email: </strong>
+              <%= user.email %>
+            </p>
+
+            <p>
+              <strong>Địa chỉ: </strong>
+              <%= user.address %>
+            </p>
+
+            <p>
+              <strong>Ngày sinh: </strong>
+              <%= user.birthday %>
+            </p>
+
+            <p>
+              <strong>Giới tính: </strong>
+              <% if user.gender = true %>
+                Nam
+              <%else%>
+                Nữ
+              <%end%>
+            </p>
+
+            <%= link_to 'Chỉnh sửa', edit_user_path(user), class: 'btn btn-warning' %>
+          <%end %>
+        <%end %>
+      </div>
+    </div>
+  </div>
+</div>

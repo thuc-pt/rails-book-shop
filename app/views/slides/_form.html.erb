@@ -1,0 +1,31 @@
+<%= form_with(model: slide, local: true) do |form| %>
+  <% if slide.errors.any? %>
+    <div class="alert alert-danger text-center">
+      <% slide.errors.full_messages.each do |message| %><%= message %><% end %>
+    </div>
+  <% end %>
+
+  <div class="custom-file mb-3">
+    <%= form.file_field :url_img, class: 'custom-file-input' %>
+    <%= form.label 'Chọn hình ảnh', class: 'custom-file-label' %>
+  </div>
+
+  <div class="form-group">
+    <%= collection_select(:slide, :link_slide_id, @link, :id, :name, {prompt:'Chọn đường dẫn'}, {class: 'form-control'}) %>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-6">
+      <%= form.submit 'Lưu', class: 'btn btn-success btn-block' %>
+    </div>
+    <div class="col-xl-6">
+      <%= link_to 'Back', slides_path, class: 'btn btn-secondary btn-block' %>
+    </div>
+  </div>
+<% end %>
+<script>
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>

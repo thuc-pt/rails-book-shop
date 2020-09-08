@@ -1,0 +1,18 @@
+.title {
+  color: white;
+  background: #666666;
+  padding: 15px;
+  font-weight: 600;
+  border-radius: 5px 5px 0 0;
+}
+.body-link {
+  background: white;
+  border-radius: 0 0 5px 5px;
+}
+.body-link .nav-link {
+  color: #666666;
+}
+.body-link .nav-link:hover {
+  background: orange;
+  color: white;
+}

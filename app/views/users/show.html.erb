@@ -1,0 +1,45 @@
+<div class="container">
+  <p class="text-center text-success"><%= notice %></p>
+  <div class="jumbotron">
+    <p>
+      <strong>Họ tên: </strong>
+      <%= @user.fullname %>
+    </p>
+
+    <p>
+      <strong>Số điện thoại: </strong>
+      <%= @user.phone %>
+    </p>
+
+    <p>
+      <strong>Email: </strong>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <strong>Địa chỉ: </strong>
+      <%= @user.address %>
+    </p>
+
+    <p>
+      <strong>Ngày sinh: </strong>
+      <%= @user.birthday %>
+    </p>
+
+    <p>
+      <strong>Giới tính: </strong>
+      <% if @user.gender = true %>
+        Nam
+      <%else%>
+        Nữ
+      <%end%>
+    </p>
+
+    <p>
+      <strong>Account: </strong>
+      <%= @user.account.username %>
+    </p>
+
+    <%= link_to 'Back', users_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Sách tâm lý và kỹ năng sống</h1>
+    <hr>
+    <div class="row">
+      <%@lifeSkill.each do |b| %>
+        <div class="col-xl-2">
+          <a href="<%=bookstore_path(b) %>" class="detail">
+            <%=image_tag(b.book.url_img.url, class: 'img-fluid') %>
+            <p><%=b.book.title %></p>
+          </a>
+          <span><%=b.book.price %>VND</span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="container">
+  <p class="text-center text-success"><%= notice %></p>
+  <div class="row">
+    <%=render 'admin/list' %>
+    <div class="col-xl-9">
+      <div class="jumbotron">
+        <h1>Người dùng tài khoản</h1>
+        <br>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Họ Tên</th>
+            <th>Tên tài khoản</th>
+            <th colspan="3"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.fullname %></td>
+              <td><%= user.account.username %></td>
+              <td><%= link_to 'Show', user, class: 'btn btn-info' %></td>
+              <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <p><%=will_paginate @users, class: 'justify-content-center' %></p>
+      </div>
+    </div>
+  </div>
+</div>

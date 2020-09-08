@@ -1,0 +1,89 @@
+<%= form_with(model: book, local: true, html: { multipart: true } ) do |form| %>
+  <% if book.errors.any? %>
+    <div class="alert alert-danger">
+    <% book.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="form-group">
+        <%= form.text_field :title, class: 'form-control', placeholder: 'Tên sách' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.text_field :author, class: 'form-control', placeholder: 'Tác giả' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.number_field :price, class: 'form-control', placeholder: 'Đơn giá' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.number_field :weight, class: 'form-control', placeholder: 'Trọng lượng sách' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.text_field :size, class: 'form-control', placeholder: 'Kích thước sách' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.number_field :number_page, class: 'form-control', placeholder: 'Số trang' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.text_field :sku, class: 'form-control', placeholder: 'Mã SKU' %>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="custom-file mb-3">
+        <%= form.file_field :url_img, class: 'custom-file-input'%>
+        <%=form.label 'Chọn hình ảnh', class: 'custom-file-label'%>
+      </div>
+
+      <div class="form-group">
+        <%= collection_select(:book, :category_id, @categories, :id, :name, {prompt:'Thể loại sách'}, {class: 'form-control'}) %>
+      </div>
+
+      <div class="form-group">
+        <%= collection_select(:book, :supplier_id, @suppliers, :id, :name, {prompt:'Nhà cung cấp'}, {class: 'form-control'}) %>
+      </div>
+
+      <div class="form-group">
+        <%= collection_select(:book, :company_id, @companies, :id, :name, {prompt:'Nhà sản xuất'}, {class: 'form-control'}) %>
+      </div>
+
+      <div class="form-group">
+        <%= collection_select(:book, :formality_id, @formalities, :id, :name, {prompt:'Loại bìa sách'}, {class: 'form-control'}) %>
+      </div>
+
+      <div class="form-group">
+        <%= collection_select(:book, :language_id, @languages, :id, :name, {prompt:'Chọn ngôn ngữ'}, {class: 'form-control'})%>
+      </div>
+      <div class="form-group">
+        <strong>Ngày Xuất Bản</strong>
+        <%= form.date_select :publishing_date, :order => [:day, :month, :year], :use_month_numbers => true, :start_year => Date.current.year, :end_year => 1950 %>
+      </div>
+    </div>
+    <div class="col-xl-12">
+      <div class="form-group">
+        <%= form.text_area :detail, class: 'form-control', placeholder: 'Review sách', rows: 10 %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-6">
+      <%= form.submit 'Save', class: 'btn btn-success btn-lg btn-block' %>
+    </div>
+    <div class="col-xl-6">
+      <%= link_to 'Back', books_path, class: 'btn btn-lg btn-secondary btn-block' %>
+    </div>
+  </div>
+<% end %>
+<script>
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>

@@ -1,0 +1,38 @@
+<%= form_with(model: order, local: true) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <% order.errors.full_messages.each do |message| %><%= message %><% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, 'Họ tên' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :address, 'Địa chỉ' %>
+    <%= form.text_field :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :pay_type, 'Kiểu thanh toán' %>
+    <%= form.select :pay_type, Order::PAYMENT_TYPES, prompt: 'Chọn kiểu thanh toán', class: 'form-control' %>
+  </div>
+
+  <%=form.hidden_field :cart_id, value: session[:cart_id] %>
+
+  <div class="row">
+    <div class="col-xl-6">
+      <%= form.submit 'Xác nhận đặt hàng', class: 'btn btn-success btn-block' %>
+    </div>
+    <div class="col-xl-6">
+      <%= link_to 'Quay lại', cart_path(@cart), class: 'btn btn-secondary btn-block' %>
+    </div>
+  </div>
+<% end %>

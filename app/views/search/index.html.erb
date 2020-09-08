@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="jumbotron">
+    <%if @book.empty? %>
+      <h1>Không tìm thấy sản phẩm nào</h1>
+    <%else%>
+      <div class="row">
+        <%@book.each do |search| %>
+          <div class="col-xl-3">
+            <a href="<%=bookstore_path(search) %>" class="detail">
+              <%=image_tag(search.book.url_img.url, class: 'img-fluid', style: 'margin-top: 15px') %>
+              <p style="margin-top: 15px"><%=search.book.title %></p>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    <%end%>
+  </div>
+</div>

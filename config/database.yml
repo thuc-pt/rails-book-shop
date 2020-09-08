@@ -1,0 +1,19 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  encoding: utf8
+  database: bookstore
+  username: root
+  password: 202201
+
+test:
+  <<: *default
+  database: test.bookstore
+
+production:
+  <<: *default
+  database: production.bookstore

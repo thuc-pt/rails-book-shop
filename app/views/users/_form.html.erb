@@ -1,0 +1,52 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div class="text-center text-success">
+      <% user.errors.full_messages.each do |message| %><%= message %><% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :fullname, 'Họ tên' %>
+    <%= form.text_field :fullname, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :phone, 'Số điện thoại' %>
+    <%= form.text_field :phone, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :address, 'Địa chỉ' %>
+    <%= form.text_field :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :birthday, 'Ngày sinh' %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= form.date_select :birthday, :order => [:day, :month, :year], :use_month_numbers => true, :start_year => Date.current.year, :end_year => 1950 %>
+  </div>
+
+  <div class="form-group">
+    <%= form.radio_button :gender, true %>
+    <%= form.label 'Nam' %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= form.radio_button :gender, false %>
+    <%= form.label 'Nữ' %>
+  </div>
+
+  <%=form.hidden_field :account_id, value: session[:account_id] %>
+
+  <div class="row">
+    <div class="col-xl-6">
+      <%= form.submit 'Save', class: 'btn btn-success btn-block' %>
+    </div>
+    <div class="col-xl-6">
+      <%= link_to 'Back', users_path, class: 'btn btn-secondary btn-block' %>
+    </div>
+  </div>
+<% end %>
